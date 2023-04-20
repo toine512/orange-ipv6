@@ -23,7 +23,7 @@
     à détailler
  2. Dans `post-config.d/install-dhclient-orange-ipv6.sh`, modifier la première ligne pour renseigner l'interface WAN. Cette action peut aussi être faite directement sur le routeur (après l'étape 5). \
     Exemple : `INTERFACE="eth1.832"`
- 3. Dans `orange-dhcp/dhclient-orange-ipv6.conf` (fichier de configuration de dhclient 4), renseigner le nom de l'interface (interface WAN) et compléter les options DHCP. Les valeurs sont identiques à l'IPv4. (voir [Références](#références)) Cette action peut aussi être faite directement sur le routeur (après l'étape 5).
+ 3. Dans `orange-dhcp/dhclient-orange-ipv6.conf` (fichier de configuration de dhclient 4), renseigner le nom de l'interface (WAN) et compléter les options DHCP. Les valeurs sont identiques à l'IPv4. (voir [Références](#références)) Cette action peut aussi être faite directement sur le routeur (après l'étape 5).
  4. Copier les fichiers contenus dans `orange-dhcp` vers `/config/user-data/orange-dhcp/` \
     Ce chemin exact est obligatoire.
  5. Copier les fichiers contenus dans `post-config.d` vers `/config/scripts/post-config.d/` \
