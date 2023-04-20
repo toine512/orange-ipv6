@@ -1,6 +1,6 @@
 #!/bin/vbash
 
-# Copyright (C) 2022 toine512 <me@toine512.fr>
+# Copyright (C) 2023 toine512 <me@toine512.fr>
 #
 # **** License ****
 #  This program is free software; you can redistribute it and/or modify
@@ -15,6 +15,9 @@
 # **** End License ****
 
 INTERFACE="<INTERFACE>.832"
+
+ip6tables -t mangle -I POSTROUTING -o $INTERFACE -p udp --sport dhcpv6-client --dport dhcpv6-server -j CLASSIFY --set-class 0:6
+logger -p daemon.info -t "DHCPv6 Orange" "Règles ip6tables mangle CoS 6 installées pour l'interface $INTERFACE."
 
 if [ ! -f "/etc/systemd/system/dhclient-orange-ipv6@.service" ]; then
 	chmod +x /config/user-data/orange-dhcp/dhclient-orange-ipv6.pl
