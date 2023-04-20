@@ -1,4 +1,4 @@
-# Copyright (C) 2022 toine512 <me@toine512.fr>
+# Copyright (C) 2023 toine512 <me@toine512.fr>
 #
 # **** License ****
 #  This program is free software; you can redistribute it and/or modify
@@ -20,7 +20,7 @@ BindsTo=network.target
 
 [Service]
 Type=simple
-ExecStart=/sbin/dhclient -6 -P -d -q --no-pid -cf /config/user-data/orange-dhcp/dhclient-orange-ipv6.conf -sf /config/user-data/orange-dhcp/dhclient-orange-ipv6.pl -lf /var/run/dhclient-ipv6-%I.leases %I
+ExecStart=/sbin/dhclient -6 -P -d -q --no-pid -cf /config/user-data/orange-dhcp/dhclient-orange-ipv6.conf -sf /config/user-data/orange-dhcp/dhclient-orange-ipv6.pl -lf /var/lib/dhclient-ipv6-%I.leases %I
 #PIDFile=/var/run/dhclient-orange-ipv6.pid
 
 # Set the CPU scheduling policy to idle which is for running very low priority background jobs
