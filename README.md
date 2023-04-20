@@ -2,6 +2,9 @@
  IPv6 Orange pour EdgeOS
 
 # Fonctionnement
+## dhclient 4
+
+
 ## Distribution du préfixe
 
 
@@ -38,7 +41,7 @@
 - https://lafibre.info/remplacer-livebox/ubiquiti-er-ipv6-dhcp6-en-2-x
 - https://lafibre.info/remplacer-livebox/durcissement-du-controle-de-loption-9011-et-de-la-conformite-protocolaire
 
-# TODO
+# To do list
  - [ ] Compléter le README
  - [ ] Support CoS 6 complet
  - [ ] Meilleur unit file pour pourvoir release le bail DHCP correctement
