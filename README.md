@@ -44,4 +44,4 @@
 # To do list
  - [ ] Compléter le README
  - [ ] Support CoS 6 complet
- - [ ] Meilleur unit file pour pourvoir release le bail DHCP correctement
+ - [x] Meilleur unit file pour pourvoir release le bail DHCP correctement
