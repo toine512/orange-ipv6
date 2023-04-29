@@ -359,10 +359,13 @@ sub post_hook {
 			}
 		}
 		
-		my $ifname = $interface->name();
-		sysctl_set_ra($ifname, 1);
-		
-		syslog(LOG_INFO, "Refus du Router Advertisement sur l'interface $ifname. (RA mode 1)");
+		# L'acceptation du RA n'est pas désactivée en cas de EXPIRE6 car un autre état suivra.
+		if($reason eq 'RELEASE6' or $reason eq 'STOP6') {
+			my $ifname = $interface->name();
+			sysctl_set_ra($ifname, 1);
+			
+			syslog(LOG_INFO, "Refus du Router Advertisement sur l'interface $ifname. (RA mode 1)");
+		}
 	}
 
 	if(@config_commands) {
