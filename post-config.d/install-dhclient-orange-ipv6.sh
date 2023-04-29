@@ -17,6 +17,7 @@
 INTERFACE="<INTERFACE>.832"
 
 ip6tables -t mangle -I POSTROUTING -o $INTERFACE -p udp --sport dhcpv6-client --dport dhcpv6-server -j CLASSIFY --set-class 0:6
+ip6tables -t mangle -I POSTROUTING -o $INTERFACE -p udp --sport dhcpv6-client --dport dhcpv6-server -j DSCP --set-dscp-class CS6
 logger -p daemon.info -t "DHCPv6 Orange" "Règles ip6tables mangle CoS 6 installées pour l'interface $INTERFACE."
 
 if [ ! -f "/etc/systemd/system/dhclient-orange-ipv6@.service" ]; then
