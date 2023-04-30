@@ -10,11 +10,11 @@
 
 ## Démarrage
  Le script `install-dhclient-orange-ipv6.sh` :
- - installe les règles `mangle POSTROUTING` de `ip6tables` pour ajouter le tag Class of Service 6 sur les paquets DHCP et Router Advertisement (TODO),
+ - installe les règles `mangle POSTROUTING` de `ip6tables` pour ajouter le tag Class of Service 6 et l'en-tête IPv6 DSCP CS6 sur les paquets DHCPv6, NDP et MLDv2,
  - enregistre et active l'unit file pour démarrer dhclient si le fichier n'existe pas dans `/etc/systemd/system/dhclient-orange-ipv6@.service`.
 
 ## Log
- Les différents scripts sortent des messages dans syslog : facility `daemon.info`, nom `DHCPv6 Orange`.
+ Les différents scripts sortent des messages dans syslog : facility `daemon.info` ou `daemon.notice`, nom `DHCPv6 Orange`.
 
 # Installation
  Tous les fichiers appatiennent à l'utilisateur `ubnt` et au groupe `vyattacfg`. (comportement par défaut)
@@ -37,11 +37,13 @@
 
 
 # Références
+- Travail basé sur ce topic : https://lafibre.info/remplacer-livebox/tuto-er-6p-v2-0-6-cisco-sg350-28p-nettv-sans-livebox/
 - https://lafibre.info/remplacer-livebox/en-cours-remplacer-sa-livebox-par-un-routeur-ubiquiti-edgemax
 - https://lafibre.info/remplacer-livebox/ubiquiti-er-ipv6-dhcp6-en-2-x
 - https://lafibre.info/remplacer-livebox/durcissement-du-controle-de-loption-9011-et-de-la-conformite-protocolaire
 
 # To do list
  - [ ] Compléter le README
- - [ ] Support CoS 6 complet
+ - [ ] Détection de la perte de communication
+ - [x] Support CoS 6 complet
  - [x] Meilleur unit file pour pourvoir release le bail DHCP correctement
