@@ -14,7 +14,7 @@
  - enregistre et active l'unit file pour démarrer dhclient si le fichier n'existe pas dans `/etc/systemd/system/dhclient-orange-ipv6@.service`.
 
 ## Log
- Les différents scripts sortent des messages dans syslog : facility `daemon.info` ou `daemon.notice`, nom `DHCPv6 Orange`.
+ Les différents scripts sortent des messages dans syslog : facility `daemon`, nom `DHCPv6 Orange` et sévérité info à error.
 
 # Installation
  Tous les fichiers appatiennent à l'utilisateur `ubnt` et au groupe `vyattacfg`. (comportement par défaut)

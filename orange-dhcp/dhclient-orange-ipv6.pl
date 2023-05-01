@@ -242,7 +242,7 @@ sub post_hook {
 		my $ifname = $interface->name();
 		sysctl_set_ra($ifname, 2);
 		
-		syslog(LOG_NOTICE, "Acceptation du Router Advertisement sur l'interface $ifname. (RA mode 2)");
+		syslog(LOG_INFO, "Acceptation du Router Advertisement sur l'interface $ifname. (RA mode 2)");
 	}
 	
 	elsif($reason eq 'BOUND6') {
@@ -280,7 +280,7 @@ sub post_hook {
 			die unless defined($ENV{'old_ip6_prefix'}) and defined($ENV{'new_ip6_prefix'});
 			
 			if($ENV{'old_ip6_prefix'} eq $ENV{'new_ip6_prefix'}) {
-				syslog(LOG_INFO, "Préfixe Orange inchangé ($ENV{'new_ip6_prefix'}).");
+				syslog(LOG_NOTICE, "Préfixe Orange inchangé ($ENV{'new_ip6_prefix'}).");
 				
 				my $max_life_changed = 0;
 				my $preferred_life_changed = 0;
@@ -340,7 +340,7 @@ sub post_hook {
 	}
 	
 	elsif($reason eq 'EXPIRE6' or $reason eq 'RELEASE6' or $reason eq 'STOP6') {
-		syslog(LOG_WARNING, "Préfixe Orange expiré.");
+		syslog(LOG_ERROR, "Préfixe Orange expiré.");
 		
 		my @target_intf = get_other_intf_with_sla_id();
 		
@@ -374,7 +374,7 @@ sub post_hook {
 		push @config_commands, 'end';
 		
 		waitfor_commit();
-		syslog(LOG_NOTICE, "Modification de la configuration du routeur…");
+		syslog(LOG_INFO, "Modification de la configuration du routeur…");
 		
 		foreach(@config_commands) {
 			system("/opt/vyatta/sbin/vyatta-cfg-cmd-wrapper $_");
