@@ -11,7 +11,7 @@
 ## Démarrage
  Le script `install-dhclient-orange-ipv6.sh` :
  - installe les règles `mangle POSTROUTING` de `ip6tables` pour ajouter le tag Class of Service 6 et l'en-tête IPv6 DSCP CS6 sur les paquets DHCPv6, NDP et MLDv2,
- - enregistre et active l'unit file pour démarrer dhclient si le fichier n'existe pas dans `/etc/systemd/system/dhclient-orange-ipv6@.service`.
+ - enregistre et active l'unit file pour démarrer dhclient si le fichier n'existe pas dans `/etc/systemd/system/dhclient-orange-ipv6@.service`,
  - enregistre l'unit file annexe pour le service de surveillance du lien dans `/etc/systemd/system/orange-ipv6-uplink-mon@.service`.
 
 ## Log
