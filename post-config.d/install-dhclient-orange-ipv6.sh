@@ -1,4 +1,4 @@
-#!/bin/vbash
+#!/bin/bash
 
 # Copyright (C) 2023 toine512 <me@toine512.fr>
 #
@@ -39,8 +39,10 @@ logger -p daemon.info -t "DHCPv6 Orange" "Règles ip6tables mangle CoS 6 et DSCP
 ## Installation (1 fois)
 if [ ! -f "/etc/systemd/system/dhclient-orange-ipv6@.service" ]; then
 	chmod +x /config/user-data/orange-dhcp/dhclient-orange-ipv6.pl
+	chmod +x /config/user-data/orange-dhcp/ipv6-uplink-mon.pl
 	cp /config/user-data/orange-dhcp/dhclient-orange-ipv6@.service /etc/systemd/system/dhclient-orange-ipv6@.service
-	systemctl enable dhclient-orange-ipv6@$INTERFACE
-	systemctl start dhclient-orange-ipv6@$INTERFACE &
+	cp /config/user-data/orange-dhcp/orange-ipv6-uplink-mon@.service /etc/systemd/system/orange-ipv6-uplink-mon@.service
+	systemctl --no-pager enable dhclient-orange-ipv6@$INTERFACE
+	systemctl --no-block --no-pager start dhclient-orange-ipv6@$INTERFACE &
 	logger -p daemon.warning -t "DHCPv6 Orange" "Service installé pour l'interface $INTERFACE."
 fi

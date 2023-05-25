@@ -1,20 +1,23 @@
 [Unit]
 Description=dhclient 4 pour Orange DHCPv6 sur %I
+Before=orange-ipv6-uplink-mon@%i.service
 After=network.target vyatta-router.service
+Wants=orange-ipv6-uplink-mon@%i.service
 Requisite=network.target
 BindsTo=network.target
+
 
 [Service]
 Type=forking
 PIDFile=/var/run/dhclient-orange-ipv6.pid
 
-ExecStart=/sbin/dhclient -v -6 -P -q -pf /var/run/dhclient-orange-ipv6.pid -cf /config/user-data/orange-dhcp/dhclient-orange-ipv6.conf -sf /config/user-data/orange-dhcp/dhclient-orange-ipv6.pl -lf /var/lib/dhclient-ipv6-%I.leases %I
-ExecStop=/sbin/dhclient -v -6 -r -q -pf /var/run/dhclient-orange-ipv6.pid -cf /config/user-data/orange-dhcp/dhclient-orange-ipv6.conf -sf /config/user-data/orange-dhcp/dhclient-orange-ipv6.pl -lf /var/lib/dhclient-ipv6-%I.leases %I
+ExecStart=/sbin/dhclient -v -6 -P -q -pf /var/run/dhclient-orange-ipv6.pid -cf /config/user-data/orange-dhcp/dhclient-orange-ipv6.conf -sf /config/user-data/orange-dhcp/dhclient-orange-ipv6.pl -lf /var/lib/dhclient-ipv6-%i.leases %I
+ExecStop=/sbin/dhclient -v -6 -r -q -pf /var/run/dhclient-orange-ipv6.pid -cf /config/user-data/orange-dhcp/dhclient-orange-ipv6.conf -sf /config/user-data/orange-dhcp/dhclient-orange-ipv6.pl -lf /var/lib/dhclient-ipv6-%i.leases %I
 
-Restart=no
-TimeoutSec=2min
+#RestartSec=1min
+#Restart=on-failure
 
 
 [Install]
 WantedBy=multi-user.target
-
+Also=orange-ipv6-uplink-mon@%i.service

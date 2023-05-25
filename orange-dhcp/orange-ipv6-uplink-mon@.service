@@ -1,0 +1,13 @@
+[Unit]
+Description=Surveillance du lien montant pour Orange DHCPv6 sur %I
+BindsTo=dhclient-orange-ipv6@%i.service
+After=dhclient-orange-ipv6@%i.service
+
+
+[Service]
+Type=simple
+
+ExecStart=/config/user-data/orange-dhcp/ipv6-uplink-mon.pl %I
+
+RestartSec=4min
+Restart=on-success
