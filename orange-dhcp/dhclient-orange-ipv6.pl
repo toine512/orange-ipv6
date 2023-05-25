@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Copyright (C) 2022 toine512 <me@toine512.fr>
+# Copyright (C) 2023 toine512 <me@toine512.fr>
 #
 # **** License ****
 #  Unless other terms apply to a specific section,
@@ -211,7 +211,8 @@ sub setenv_ip6 {
 	return unless defined $ip_prefix;
 		
 	my $if_subnet = compute_subnet($ip_prefix, $sla_id, 64-$ip_prefix->masklen());
-	$ENV{"${key}_ip6_address"} = $if_subnet->first()->addr();
+	#$ENV{"${key}_ip6_address"} = $if_subnet->first()->addr();
+	$ENV{"${key}_ip6_address"} = $if_subnet->nth(0xca0ca0-1)->addr(); #:ca:ca0
 	$ENV{"${key}_ip6_prefixlen"} = $if_subnet->masklen();
 }
 
