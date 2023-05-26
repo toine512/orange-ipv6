@@ -341,7 +341,7 @@ sub post_hook {
 	}
 	
 	elsif($reason eq 'EXPIRE6' or $reason eq 'RELEASE6' or $reason eq 'STOP6') {
-		syslog(LOG_ERROR, "Préfixe Orange expiré.");
+		syslog(LOG_ERR, "Préfixe Orange expiré.");
 		
 		my @target_intf = get_other_intf_with_sla_id();
 		
