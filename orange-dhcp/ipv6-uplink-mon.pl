@@ -24,7 +24,7 @@ die "Le nom de l'interface à surveiller doit être donné en paramètre !" unle
 
 #say `/sbin/ip -6 -c neigh show to fe80::ba0:bab dev $ARGV[0]`;
 
-my @valid = ("reachable", "none", "probe", "delay");
+my @valid = ("reachable", "stale", "none", "probe", "delay");
 foreach(@valid) {
 	exit 0 if length(`/sbin/ip -6 neigh show to fe80::ba0:bab dev $ARGV[0] nud $_`);
 }
