@@ -16,6 +16,8 @@ ExecStop=/sbin/dhclient -v -6 -r -q -pf /var/run/dhclient-orange-ipv6.pid -cf /c
 
 #RestartSec=1min
 #Restart=on-failure
+TimeoutStartSec=infinity
+TimeoutStopSec=3min
 
 
 [Install]
