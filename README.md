@@ -45,6 +45,7 @@
 
 # To do list
  - [ ] Compléter le README
+ - [ ] Permettre plusieurs interfaces WAN simultanément (plusieurs instances)
  - [x] Détection de la perte de communication
  - [x] Support CoS 6 complet
  - [x] Meilleur unit file pour pourvoir release le bail DHCP correctement
