@@ -13,6 +13,7 @@ PIDFile=/var/run/dhclient-orange-ipv6.pid
 
 ExecStart=/sbin/dhclient -v -6 -P -q -pf /var/run/dhclient-orange-ipv6.pid -cf /config/user-data/orange-dhcp/dhclient-orange-ipv6.conf -sf /config/user-data/orange-dhcp/dhclient-orange-ipv6.pl -lf /var/lib/dhclient-ipv6-%i.leases %I
 ExecStop=/sbin/dhclient -v -6 -r -q -pf /var/run/dhclient-orange-ipv6.pid -cf /config/user-data/orange-dhcp/dhclient-orange-ipv6.conf -sf /config/user-data/orange-dhcp/dhclient-orange-ipv6.pl -lf /var/lib/dhclient-ipv6-%i.leases %I
+ExecStop=-/bin/rm -f /var/lib/dhclient-ipv6-%i.leases
 
 #RestartSec=1min
 #Restart=on-failure
